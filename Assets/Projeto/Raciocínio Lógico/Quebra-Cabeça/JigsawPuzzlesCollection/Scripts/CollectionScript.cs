@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace JigsawPuzzlesCollection.Scripts
@@ -9,7 +8,7 @@ namespace JigsawPuzzlesCollection.Scripts
     {
         private Collection m_collection;
 
-       
+
         public void SetDetails(Collection collection)
         {
             m_collection = collection;
@@ -18,15 +17,9 @@ namespace JigsawPuzzlesCollection.Scripts
             button.onClick.RemoveAllListeners();
 
             if (!m_collection.Free && // Collection is not free
-                !m_collection.IsAvailable && // Collection wasn't awarded yet
-                !string.IsNullOrEmpty(InitializeAdsScript.Instance.GameId)) // And Ads are configured
+                !m_collection.IsAvailable)
             {
-                button.interactable = Advertisement.IsReady(InitializeAdsScript.Instance.rewardedPlacementId);
-                button.onClick.AddListener(() =>
-                {
-                    LevelSelectorScript.Instance.SelectedCollection = collection;
-                    Advertisement.Show(InitializeAdsScript.Instance.rewardedPlacementId);
-                });
+                button.onClick.AddListener(() => { LevelSelectorScript.Instance.SelectedCollection = collection; });
             }
             else
             {
