@@ -50,7 +50,7 @@ namespace TicTacToeWithAI
                 }
             }
 
-            SceneManager.LoadScene("TicTacToe");
+            SceneManager.LoadScene("Board");
         }
     }
 }
