@@ -1,59 +1,61 @@
+using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
 
 
 public class CardController : MonoBehaviour
 {
-    public int id; // ID da carta
-    public bool isFlipped = false; // Indica se a carta está virada
-    public bool isMatched = false; // Indica se a carta foi combinada com outra
-    private SpriteRenderer spriteRenderer;
-    GameplayController controller;
-    
+    public int id;
+    public bool isFlipped;
+    public Image CardImage { get; set; }
+    private GameplayController Controller { get; set; }
+
+    private void Awake()
+    {
+        Controller = FindFirstObjectByType<GameplayController>();
+        CardImage = gameObject.GetComponentInChildren<Image>();
+        isFlipped = false;
+    }
+
     private void Start()
     {
-        controller = FindFirstObjectByType<GameplayController>();
-        spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        GetComponent<Button>().onClick.AddListener(() => Controller.FlipCard(this));
     }
 
-    private void OnMouseDown()
-    {
-        if ((!FindFirstObjectByType<ToastScript>()) && (!controller.configOpen)) controller.FlipCard(this);
-    }
 
-    // Método para virar a carta
     public IEnumerator Flip()
     {
-        isFlipped = !isFlipped;
+        var rectTransform = GetComponent<RectTransform>();
 
-        if (isFlipped == false)
+        if (isFlipped)
         {
             for (var i = 0f; i <= 180; i += 10f)
             {
-                gameObject.transform.rotation = Quaternion.Euler(0, i, 0);
-                if (i == 90) spriteRenderer.sprite = null;
+                rectTransform.rotation = Quaternion.Euler(0, i, 0);
+                if (i == 90) CardImage.sprite = Controller.CardBack;
+                isFlipped = false;
                 yield return new WaitForSeconds(0.01f);
+                rectTransform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
         else
         {
             for (var i = 180f; i >= 0f; i -= 10f)
             {
-                gameObject.transform.rotation = Quaternion.Euler(0, i, 0);
-                if (i == 90) spriteRenderer.sprite = controller.cardData[id].cardSprite;
+                rectTransform.rotation = Quaternion.Euler(0, i, 0);
+                if (i == 90) CardImage.sprite = Controller.CardData[id].cardSprite;
+                isFlipped = true;
                 yield return new WaitForSeconds(0.01f);
+                rectTransform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
     }
 
-    // Método para marcar a carta como combinada
     public void Match()
     {
-        isMatched = true;
         Debug.Log("Formou par!");
-        GameObject toast = Instantiate(controller.Toast);
-        toast.GetComponent<ToastScript>().setText(controller.cardData[id].cardDescription);
-
         Destroy(this.gameObject, 1f);
     }
 }
