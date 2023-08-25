@@ -200,7 +200,6 @@ public class HexVerticalMinesweeper : MonoBehaviour {
 			HexCell hc=tapped.GetComponent<HexCell>();
 			if(!hc.isRevealed){//not yet revealed
 				if (levelData[(int)mouseOffsetPos.x][(int)mouseOffsetPos.y] == 10){//bomb
-					Debug.Log("bomb boom, game over");
 					hc.reveal();//reveal
 					showGameOver();
 				}else if (levelData[(int)mouseOffsetPos.x][(int)mouseOffsetPos.y] == 0){//blank tile with no mines near by, need recursive reveal
