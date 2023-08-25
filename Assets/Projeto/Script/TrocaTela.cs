@@ -2,63 +2,65 @@ using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class TrocaTela : MonoBehaviour
+public static class TrocaTela
 {
-    public void trocarParaMemoria()
+    public static void trocarParaMemoria()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaMemoria");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-    public void trocarParaRaciocinio()
+
+    public static void trocarParaRaciocinio()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRacioc");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-    public void trocarParaMemoriaAud()
+
+    public static void trocarParaMemoriaAud()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaMemAud");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-    public void trocarParaTemasMem()
+
+    public static void trocarParaTemasMem()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaTemasMem");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
-    } 
-    public void trocarParaRegrasMem()
+    }
+
+    public static void trocarParaRegrasMem()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasMemoria");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-    public void trocarParaTelaInicial()
+
+    public static void trocarParaTelaInicial()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaBuild");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-    public void trocarParaTemasMemAud()
+
+    public static void trocarParaTemasMemAud()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaTemasMemAud");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
-    } 
-    public void trocarParaRegrasMemAud()
+    }
+
+    public static void trocarParaRegrasMemAud()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasMemAud");
@@ -66,57 +68,51 @@ public class TrocaTela : MonoBehaviour
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public void trocarParaCenaSudoku()
+    public static void trocarParaCenaSudoku()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaSudoku");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-    public void trocarParaRegrasSudoku()
+
+    public static void trocarParaRegrasSudoku()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasSudoku");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-        public void trocarParaJogoSudoku()
+
+    public static void trocarParaJogoSudoku()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("Template");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-        
-            public void trocarParaCenaJogoDaVelha()
+
+    public static void trocarParaCenaJogoDaVelha()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaJogodaVelha");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-    public void trocarParaRegrasJogoDaVelha()
+
+    public static void trocarParaRegrasJogoDaVelha()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasJogodaVelha");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-        public void trocarParaJogoJogoDaVelha()
+
+    public static void trocarParaJogoJogoDaVelha()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("Board");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
-        
-
 }
-
-
-
