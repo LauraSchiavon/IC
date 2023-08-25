@@ -111,7 +111,31 @@ public class TrocaTela : MonoBehaviour
     public void trocarParaJogoJogoDaVelha()
     {
         var start = SceneManager.GetActiveScene();
-        var sceneLoad = SceneManager.LoadSceneAsync("Board");
+        var sceneLoad = SceneManager.LoadSceneAsync("MainMenu");
+        sceneLoad.allowSceneActivation = true;
+        SceneManager.UnloadSceneAsync(start);
+    }
+    
+    public void trocarParaCenaCampoMinado()
+    {
+        var start = SceneManager.GetActiveScene();
+        var sceneLoad = SceneManager.LoadSceneAsync("CenaCampoMinado");
+        sceneLoad.allowSceneActivation = true;
+        SceneManager.UnloadSceneAsync(start);
+    }
+    
+    public void trocarParaRegrasCampoMinado()
+    {
+        var start = SceneManager.GetActiveScene();
+        var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasCampMin");
+        sceneLoad.allowSceneActivation = true;
+        SceneManager.UnloadSceneAsync(start);
+    }
+    
+    public void trocarParaJogoCampoMinado()
+    {
+        var start = SceneManager.GetActiveScene();
+        var sceneLoad = SceneManager.LoadSceneAsync("Hexagonal Minesweeper Vertical");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
