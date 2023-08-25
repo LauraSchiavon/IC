@@ -114,5 +114,5 @@ public class TrocaTela : MonoBehaviour
         var sceneLoad = SceneManager.LoadSceneAsync("Board");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
-    }
+    } 
 }
