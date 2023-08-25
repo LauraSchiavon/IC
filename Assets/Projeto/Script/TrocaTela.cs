@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class TrocaTela
 {
-    public static void trocarParaMemoria()
+    public static void TrocarParaMemoria()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaMemoria");
@@ -12,7 +12,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaRaciocinio()
+    public static void TrocarParaRaciocinio()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRacioc");
@@ -20,7 +20,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaMemoriaAud()
+    public static void TrocarParaMemoriaAud()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaMemAud");
@@ -28,7 +28,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaTemasMem()
+    public static void TrocarParaTemasMem()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaTemasMem");
@@ -36,7 +36,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaRegrasMem()
+    public static void TrocarParaRegrasMem()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasMemoria");
@@ -44,7 +44,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaTelaInicial()
+    public static void TrocarParaTelaInicial()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaBuild");
@@ -52,7 +52,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaTemasMemAud()
+    public static void TrocarParaTemasMemAud()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaTemasMemAud");
@@ -60,7 +60,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaRegrasMemAud()
+    public static void TrocarParaRegrasMemAud()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasMemAud");
@@ -68,7 +68,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaCenaSudoku()
+    public static void TrocarParaCenaSudoku()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaSudoku");
@@ -76,7 +76,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaRegrasSudoku()
+    public static void TrocarParaRegrasSudoku()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasSudoku");
@@ -84,7 +84,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaJogoSudoku()
+    public static void TrocarParaJogoSudoku()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("Template");
@@ -92,7 +92,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaCenaJogoDaVelha()
+    public static void TrocarParaCenaJogoDaVelha()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaJogodaVelha");
@@ -100,7 +100,7 @@ public static class TrocaTela
         SceneManager.UnloadSceneAsync(start);
     }
 
-    public static void trocarParaRegrasJogoDaVelha()
+    public static void TrocarParaRegrasJogoDaVelha()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasJogodaVelha");
