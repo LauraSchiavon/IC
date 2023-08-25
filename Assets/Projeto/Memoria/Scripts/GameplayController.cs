@@ -151,7 +151,7 @@ public class GameplayController : MonoBehaviour
         yield return new WaitUntil(() =>
             !FindFirstObjectByType<ToastScript>() && !FindFirstObjectByType<CardController>());
         Debug.Log("ganhou");
-        //Instantiate(Win);
+        Instantiate(winPrefab);
     }
 
     public void SoundPlay(AudioClip audio)
