@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class HexVerticalMinesweeper : MonoBehaviour {
@@ -9,7 +8,6 @@ public class HexVerticalMinesweeper : MonoBehaviour {
 	public GameObject hexCellPrefab;//the hex cell go with hexcell script
 	//UI elements
 	public GameObject restartButton_GO;
-	public Text statusTxt;
 
 	//User defined vars
 	public Vector2 gridOffset;//position of the full grid
@@ -20,7 +18,7 @@ public class HexVerticalMinesweeper : MonoBehaviour {
 
 	//internal vars
 	float sideLength;//this is the lendth of one side of the hexagon or the length of a corner to centre of the hexagon
-	float hexTileHeight=206;//actually the width of the hex tile graphic (distance between the pointy opposite corners)
+	float hexTileHeight=200;//actually the width of the hex tile graphic (distance between the pointy opposite corners)
 	Vector2 levelDimensions;//grid size colum x row
 
 
@@ -50,14 +48,12 @@ public class HexVerticalMinesweeper : MonoBehaviour {
 		new int[] {-1,-1,-1,0,0,0,0,0,0,0,-1,-1,-1}};
 
     void Start(){//gets called at launch
-		Camera.main.aspect = 800.0f / 600.0f;
 		sideLength=(hexTileHeight/2)*scaleDownValue;
 		revealedTiles = 0;
 		restartButton_GO.SetActive (false);//hide
 		levelDimensions.x = levelData [0].Length;//column
 		levelDimensions.y = levelData.Length;//row (we would transpose this array though)
 		createGrid();//create the grid & add bubbles
-		updateUI();//set UI values
 	}
     void createGrid()
     {
@@ -217,7 +213,6 @@ public class HexVerticalMinesweeper : MonoBehaviour {
 
 			}
 		}
-		updateUI();//set UI values
 	}
 	void revealConnectedTiles(HexCell hc)
     {
@@ -295,15 +290,10 @@ public class HexVerticalMinesweeper : MonoBehaviour {
 		}
 		return levelDataTranspose;
 	}
-	public void RestartGame(){//reload to restart
-		Application.LoadLevel(0);
-	}
 	void showGameOver()
     {
 		restartButton_GO.SetActive (true);
 		gameOver=true;
     }
-	void updateUI(){
-		statusTxt.text=revealedTiles.ToString()+"/"+blankTiles.ToString();
-	}
+	
 }

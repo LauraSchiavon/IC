@@ -138,5 +138,5 @@ public class TrocaTela : MonoBehaviour
         var sceneLoad = SceneManager.LoadSceneAsync("Hexagonal Minesweeper Vertical");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
-    }
+    } 
 }
