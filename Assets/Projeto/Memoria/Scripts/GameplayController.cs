@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameplayController : MonoBehaviour
@@ -17,6 +13,7 @@ public class GameplayController : MonoBehaviour
 
     [field: Space] [field: Header("Tamanho")] [field: SerializeField]
     private int GridSizeX { get; set; }
+
     [field: SerializeField] private int GridSizeY { get; set; }
 
     [SerializeField] private GameObject[] slots;
@@ -27,6 +24,7 @@ public class GameplayController : MonoBehaviour
 
     [Space] [Header("Components")] [SerializeField]
     private GameObject cardPrefab; // Prefab da carta
+
     public GameObject toastPrefab;
     public GameObject winPrefab;
 
