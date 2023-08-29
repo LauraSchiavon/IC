@@ -127,7 +127,7 @@ public class TrocaTela : MonoBehaviour
     public void trocarParaJogoSudoku()
     {
         var start = SceneManager.GetActiveScene();
-        var sceneLoad = SceneManager.LoadSceneAsync("Template");
+        var sceneLoad = SceneManager.LoadSceneAsync("LevelSudoku");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
