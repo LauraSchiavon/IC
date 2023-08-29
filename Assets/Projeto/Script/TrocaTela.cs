@@ -43,7 +43,7 @@ public class TrocaTela : MonoBehaviour
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
+
     public void trocarParaJogoMemEsporte()
     {
         var start = SceneManager.GetActiveScene();
@@ -51,7 +51,7 @@ public class TrocaTela : MonoBehaviour
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
+
     public void trocarParaJogoMemMaterial()
     {
         var start = SceneManager.GetActiveScene();
@@ -59,7 +59,7 @@ public class TrocaTela : MonoBehaviour
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
+
     public void trocarParaRegrasMem()
     {
         var start = SceneManager.GetActiveScene();
@@ -110,26 +110,20 @@ public class TrocaTela : MonoBehaviour
 
     public void trocarParaCenaSudoku()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaSudoku");
         sceneLoad.allowSceneActivation = true;
-        SceneManager.UnloadSceneAsync(start);
     }
 
     public void trocarParaRegrasSudoku()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasSudoku");
         sceneLoad.allowSceneActivation = true;
-        SceneManager.UnloadSceneAsync(start);
     }
 
     public void trocarParaJogoSudoku()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("LevelSudoku");
         sceneLoad.allowSceneActivation = true;
-        SceneManager.UnloadSceneAsync(start);
     }
 
     public void trocarParaCenaJogoDaVelha()
@@ -150,10 +144,12 @@ public class TrocaTela : MonoBehaviour
 
     public void trocarParaJogoJogoDaVelha()
     {
+        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("MainMenu");
         sceneLoad.allowSceneActivation = true;
+        SceneManager.UnloadSceneAsync(start);
     }
-    
+
     public void trocarParaMenuJogoDaVelha()
     {
         var start = SceneManager.GetActiveScene();
@@ -161,7 +157,7 @@ public class TrocaTela : MonoBehaviour
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
+
     public void trocarParaCenaCampoMinado()
     {
         var start = SceneManager.GetActiveScene();
@@ -169,7 +165,7 @@ public class TrocaTela : MonoBehaviour
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
+
     public void trocarParaRegrasCampoMinado()
     {
         var start = SceneManager.GetActiveScene();
@@ -177,12 +173,12 @@ public class TrocaTela : MonoBehaviour
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
     }
-    
+
     public void trocarParaJogoCampoMinado()
     {
         var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CampoMinadoJogo");
         sceneLoad.allowSceneActivation = true;
         SceneManager.UnloadSceneAsync(start);
-    } 
+    }
 }

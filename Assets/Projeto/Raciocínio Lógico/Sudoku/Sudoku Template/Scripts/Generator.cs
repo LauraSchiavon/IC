@@ -7,6 +7,8 @@ using UnityEngine.UI;
 /* Used to generate a game of sudoku with custom settings. */
 public class Generator : MonoBehaviour
 {
+    [SerializeField] private GameObject[] tilesPosition;
+
     //Self-reference
     public static Generator generator;
 
@@ -127,7 +129,6 @@ public class Generator : MonoBehaviour
         updateHints(0);
         updateMistakes(0);
         gen();
-        genGrid();
         populateGrid();
     }
 
