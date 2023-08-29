@@ -150,10 +150,8 @@ public class TrocaTela : MonoBehaviour
 
     public void trocarParaJogoJogoDaVelha()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("MainMenu");
         sceneLoad.allowSceneActivation = true;
-        SceneManager.UnloadSceneAsync(start);
     }
     
     public void trocarParaMenuJogoDaVelha()

@@ -12,29 +12,27 @@ namespace TicTacToeWithAI.Board
         [SerializeField] private Button exitGameBtn;
 
         public static int round;
-        public static int moves;    // the number of moves made in the game by both players in total (number of pieces on the board)
+        public static bool win;
+
+        public static int
+            moves; // the number of moves made in the game by both players in total (number of pieces on the board)
+
         public static bool gameOver;
 
-        private void Awake() => AddListeners();
-
-        private void AddListeners()
-        {
-            newGameBtn.onClick.AddListener(NewGame);
-            exitGameBtn.onClick.AddListener(ExitGame);
-        }
-
-        private void NewGame()
+        public void NewGame()
         {
             gameOver = false;
-            SceneManager.LoadScene("TicTacToe");
+            var scene = SceneManager.LoadSceneAsync("Board");
+            scene.allowSceneActivation = true;
         }
 
-        private void ExitGame()
+        public void ExitGame()
         {
             moves = 0;
             round = 0;
             gameOver = false;
-            SceneManager.LoadScene("MainMenu");
+            var scene = SceneManager.LoadSceneAsync("MainMenu");
+            scene.allowSceneActivation = true;
         }
 
         private void Update()
@@ -48,7 +46,7 @@ namespace TicTacToeWithAI.Board
             gameOver = true;
             moves = 0;
             round = 0;
-            newGameBtn.gameObject.SetActive(true);
+            newGameBtn.transform.parent.gameObject.SetActive(true);
         }
     }
 }

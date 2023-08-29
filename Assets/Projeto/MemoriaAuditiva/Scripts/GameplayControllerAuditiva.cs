@@ -9,6 +9,8 @@ public class GameplayControllerAuditiva : MonoBehaviour
     [field: Header("Cartas")] [field: SerializeField]
     public Sprite CardBack { get; set; }
 
+    public Sprite FlippedCard { get; set; }
+
     [field: SerializeField] public JogoMemoriaAuditivaCard[] CardData { get; private set; } // Imagens das cartas
 
     [field: Space] [field: Header("Tamanho")] [field: SerializeField]

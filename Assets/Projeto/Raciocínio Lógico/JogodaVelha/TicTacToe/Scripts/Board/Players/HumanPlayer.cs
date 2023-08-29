@@ -56,6 +56,8 @@ namespace TicTacToeWithAI.Board
                     if (selfPlay)                           // only playing alone with ourself
                         if (CheckIfOver())                  // check if AI wins
                         {
+                            Debug.Log("player ganhou");
+                            Debug.Log(GameController.round);
                             GameController.gameOver = true;
                             SoundManager.GetSoundEffect(0, 1f, 0.5f);
                         }

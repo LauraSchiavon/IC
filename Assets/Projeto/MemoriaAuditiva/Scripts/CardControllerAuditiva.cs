@@ -33,7 +33,7 @@ public class CardControllerAuditiva : MonoBehaviour
             for (var i = 0f; i <= 180; i += 10f)
             {
                 rectTransform.rotation = Quaternion.Euler(0, i, 0);
-                if (i == 90) CardImage.sprite = Controller.CardBack;
+                if (i == 90) CardImage.sprite = Controller.FlippedCard;
                 isFlipped = false;
                 yield return new WaitForSeconds(0.01f);
                 rectTransform.rotation = Quaternion.Euler(0, 0, 0);
