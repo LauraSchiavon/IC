@@ -16,22 +16,10 @@ public class Generator : MonoBehaviour
     public Vector2 gridSize = new(9, 9);
 
     [Tooltip("The scale of the grid on the X and Y axis.")]
-    public Vector2 gridScale = new(1, 1);
-
-    [Tooltip("The size of each separate neighborhood.")]
     public Vector2 neighborhoodSize = new(3, 3);
 
     [Tooltip("Specify the size of your custom tiles.")]
     public Vector2 tileSize = new(30, 30);
-
-    [Tooltip("The prefab to be used when generating the grid.")]
-    public GameObject tilePrefab;
-
-    [Tooltip("A prefab with a monocolor image to be used as background.")]
-    public GameObject backgroundPrefab;
-
-    [Tooltip("A prefab with a monocolor image to be used as neighborhood background.")]
-    public GameObject neighborhoodBackgroundPrefab;
 
     [Tooltip("All tiles will be automatically generated under the parent gameObject.")]
     public GameObject tileParent;
@@ -39,16 +27,8 @@ public class Generator : MonoBehaviour
     [Tooltip("Maximum allowed number of iterations while generating the matrix.")]
     public int failSafe = 10000;
 
-    [Tooltip("The position at which the grid should be centred.")]
-    public Vector2 centerPosition;
-
-    [Tooltip("The margin of individual neighborhood.")]
-    public float neighborhoodMargin;
-
     [Tooltip("The margin of individual tiles.")]
     public float tileMargin = 5;
-
-    [Tooltip("The background margin.")] public float backgroundMargin = 10;
 
     [Tooltip("The maximum number of allowed mistakes before the game ends.")]
     public int maxMistakes = 5;
@@ -108,7 +88,7 @@ public class Generator : MonoBehaviour
     private Vector2 selectedTileCoordinates;
 
     //Initiating the game
-    void Start()
+    private void Start()
     {
         int sizeX = (int)gridSize.x;
         int sizeY = (int)gridSize.y;
@@ -118,13 +98,8 @@ public class Generator : MonoBehaviour
         currentMatrix = new int[sizeX, sizeY];
         answerMatrix = new int[sizeX, sizeY];
 
-        //Getting starting position
-        defaultPosition = tileParent.transform.position;
-
-        //Initiating difficulty
         changeDifficulty(PlayerPrefs.HasKey("difficulty") ? PlayerPrefs.GetInt("difficulty") : 0);
 
-        //Generating intial grid
         if (!selectMode) setSelectedValue(1);
         updateHints(0);
         updateMistakes(0);
@@ -335,35 +310,26 @@ public class Generator : MonoBehaviour
     {
         selectedValue = newValue;
 
-        //Checking if select mode is enabled
-        //This determines the way in which answers are submitted
         if (!selectMode)
         {
             for (int i = 0; i < buttonConfig.numberButtons.Count; i++)
             {
                 if (i + 1 != selectedValue)
                 {
-                    //Changing the color of buttons other than the selected one to the default color
                     buttonConfig.numberButtons[i].transform.GetChild(0).gameObject.GetComponent<Text>().color =
                         buttonConfig.numberButtonsDefaultColor;
 
-                    //If you are using icons instead of text buttons, please enable the following line instead.
                     //buttonConfig.numberButtons[i].GetComponent<Image>().color = buttonConfig.numberButtonsDefaultColor;
                 }
                 else
                 {
-                    //Changing the color of the selected button
                     buttonConfig.numberButtons[i].transform.GetChild(0).gameObject.GetComponent<Text>().color =
                         buttonConfig.numberButtonsSelectedColor;
-
-                    //If you are using icons instead of text buttons, please enable the following line instead.
-                    //buttonConfig.numberButtons[i].GetComponent<Image>().color = buttonConfig.numberButtonsSelectedColor;
                 }
             }
         }
         else
         {
-            //Making sure that a tile is selected
             if (selectedTile != null && selectMode)
                 setElement(selectedTile, -1, (int)selectedTileCoordinates.x, (int)selectedTileCoordinates.y);
         }
@@ -529,105 +495,30 @@ public class Generator : MonoBehaviour
         }
 
         currentMatrix = matrix;
+        genGrid();
     }
 
     //Automatically generating greed
     //Please note that the pivot of the tile parent object should be set to 0,0
     private void genGrid()
     {
-        tileParent.SetActive(false);
+        int k = 0;
 
-        tileParent.GetComponent<RectTransform>().pivot = new Vector2(0, 0);
-
-        //Increment tile sized by tile margins
-        var tsx = tileSize.x + tileMargin;
-        var tsy = tileSize.y + tileMargin;
-
-        var divisionsX = Mathf.Ceil(gridSize.x / neighborhoodSize.x) - 1;
-        var divisionsY = Mathf.Ceil(gridSize.y / neighborhoodSize.y) - 1;
-
-        //Parent & background size
-        var sizeX = gridSize.x * tsx + backgroundMargin + neighborhoodMargin * divisionsX + tileMargin;
-        var sizeY = gridSize.y * tsy + backgroundMargin + neighborhoodMargin * divisionsY + tileMargin;
-
-        //Scaling parent
-        Vector2 sd = new Vector2(sizeX, sizeY);
-        tileParent.GetComponent<RectTransform>().sizeDelta = sd;
-
-        //Adjusting parent position
-        Vector2 pos = new Vector2(defaultPosition.x - tileSize.x, defaultPosition.y - tileSize.y);
-        tileParent.transform.position = pos;
-
-        //Spawning object
-        //Please note that the background object's pivcot must be set to 0,0
-        GameObject bg = Instantiate(backgroundPrefab, pos, Quaternion.identity, tileParent.transform);
-        bg.GetComponent<RectTransform>().sizeDelta = sd;
-
-        //Generating neighborhood backgrounds.
-        //Please make sure that the tile prefab pivot is set to 0,0
-        for (int i = 0; i < currentMatrix.GetLength(0); i += (int)neighborhoodSize.x)
-        {
-            for (int j = 0; j < currentMatrix.GetLength(1); j += (int)neighborhoodSize.y)
-            {
-                Vector2 coordinates = tileParent.transform.position;
-                Vector2 size = new Vector2(tsx * neighborhoodSize.x + tileMargin,
-                    tsy * neighborhoodSize.y + tileMargin);
-
-                var neighborhoodX = Mathf.Ceil((i + 1) / neighborhoodSize.x);
-                var neighborhoodY = Mathf.Ceil((j + 1) / neighborhoodSize.y);
-
-                coordinates.x += neighborhoodX > 1
-                    ? i * tsx + size.x / 2 + neighborhoodX * neighborhoodMargin - neighborhoodMargin +
-                      backgroundMargin / 2
-                    : i * tsx + size.x / 2 + backgroundMargin / 2;
-                coordinates.y += neighborhoodY > 1
-                    ? j * tsy + size.y / 2 + neighborhoodY * neighborhoodMargin - neighborhoodMargin +
-                      backgroundMargin / 2
-                    : j * tsy + size.y / 2 + backgroundMargin / 2;
-
-                GameObject nb = Instantiate(neighborhoodBackgroundPrefab, coordinates, Quaternion.identity,
-                    tileParent.transform);
-                nb.GetComponent<RectTransform>().sizeDelta = size;
-            }
-        }
-
-        //Generating tiles
         for (int i = 0; i < currentMatrix.GetLength(0); i++)
         {
             for (int j = 0; j < currentMatrix.GetLength(1); j++)
             {
-                //Getting new tile position
-                Vector2 coordinates = tileParent.transform.position;
-                coordinates.x += tileMargin + i * tsx;
-                coordinates.y += tileMargin + j * tsy;
-
-                var neighborhoodX = Mathf.Ceil((i + 1) / neighborhoodSize.x);
-                var neighborhoodY = Mathf.Ceil((j + 1) / neighborhoodSize.y);
-
-                coordinates.x += neighborhoodX * neighborhoodMargin - neighborhoodMargin + backgroundMargin / 2;
-                coordinates.y += neighborhoodY * neighborhoodMargin - neighborhoodMargin + backgroundMargin / 2;
-
-                //Spawning tile
-                GameObject tile = Instantiate(tilePrefab, coordinates, Quaternion.identity, tileParent.transform);
-                currentGameObjectMatrix[i, j] = tile;
+                currentGameObjectMatrix[i, j] = tilesPosition[k];
+                k++;
             }
         }
-
-        //Setting position
-        tileParent.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
-        tileParent.transform.localPosition = centerPosition;
-
-        tileParent.GetComponent<RectTransform>().localScale = gridScale;
-        tileParent.SetActive(true);
     }
 
-    //Populates grid with matrix elements
     private void populateGrid()
     {
         var tsx = tileSize.x + tileMargin;
         var tsy = tileSize.y + tileMargin;
 
-        //Used to keep track of nodes in each neighborhood
         List<Vector2> occupied = new List<Vector2>();
 
         for (int i = 0; i < currentMatrix.GetLength(0); i++)
@@ -647,7 +538,6 @@ public class Generator : MonoBehaviour
 
                 //Getting tile object
                 var tile = currentGameObjectMatrix[i, j];
-
                 //Changing tile color to default
                 tile.GetComponent<Image>().color = tileConfig.defaultTileColor;
 

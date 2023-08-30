@@ -33,7 +33,7 @@ public class CardControllerAuditiva : MonoBehaviour
             for (var i = 0f; i <= 180; i += 10f)
             {
                 rectTransform.rotation = Quaternion.Euler(0, i, 0);
-                if (i == 90) CardImage.sprite = Controller.FlippedCard;
+                if (i == 90) CardImage.sprite = Controller.CardBack;
                 isFlipped = false;
                 yield return new WaitForSeconds(0.01f);
                 rectTransform.rotation = Quaternion.Euler(0, 0, 0);
@@ -46,7 +46,7 @@ public class CardControllerAuditiva : MonoBehaviour
                 rectTransform.rotation = Quaternion.Euler(0, i, 0);
                 if (i == 90)
                 {
-                    CardImage.sprite = Controller.CardData[id].cardSprite;
+                    CardImage.sprite = Controller.FlippedCard;
                     Controller.AudioSource.PlayOneShot(Controller.CardData[id].cardSound);
                 }
 
@@ -60,6 +60,7 @@ public class CardControllerAuditiva : MonoBehaviour
     public void Match()
     {
         Debug.Log("Formou par!");
-        Destroy(this.gameObject, 1f);
+        CardImage.sprite = Controller.CardData[id].cardSprite;
+        Destroy(this.gameObject, 2f);
     }
 }
