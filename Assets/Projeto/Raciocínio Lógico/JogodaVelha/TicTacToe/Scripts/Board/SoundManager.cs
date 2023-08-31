@@ -34,7 +34,7 @@ namespace Broniek.Stuff.Sounds
 
         public static void GetSoundEffect(int index, float volume, float delay = 0)
         {
-            CreateSound(soundEffects[index], volume, delay);
+           // CreateSound(soundEffects[index], volume, delay);
         }
 
         private static void CreateSound(AudioClip clip, float volume, float delay = 0)

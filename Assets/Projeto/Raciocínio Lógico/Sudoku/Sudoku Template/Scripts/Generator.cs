@@ -9,6 +9,9 @@ public class Generator : MonoBehaviour
 {
     [SerializeField] private GameObject[] tilesPosition;
 
+    public GameObject telaVitoria;
+    public GameObject telaDerrota;
+
     //Self-reference
     public static Generator generator;
 
@@ -121,13 +124,11 @@ public class Generator : MonoBehaviour
     {
         if (mistakes >= maxMistakes)
         {
-            resultConfig.resultTextObject.text = resultConfig.lossText;
-            resultConfig.resultObject.SetActive(true);
+            telaDerrota.SetActive(true);
         }
         else if (checkAnswer())
         {
-            resultConfig.resultTextObject.text = resultConfig.victoryText;
-            resultConfig.resultObject.SetActive(true);
+            telaVitoria.SetActive(true);
         }
     }
 
@@ -386,33 +387,6 @@ public class Generator : MonoBehaviour
             //Setting selected element as active
             g.SetActive(true);
         }
-    }
-
-    //Destroying child objects
-    private void clearParent()
-    {
-        foreach (Transform t in tileParent.transform)
-        {
-            Destroy(t.gameObject);
-        }
-    }
-
-    //Can be used to print the matrix
-    private void printMatrix(int[,] m)
-    {
-        string tempStr = "\n ";
-        for (int i = 0; i < m.GetLength(0); i++)
-        {
-            //For each column in the row
-            for (int j = 0; j < m.GetLength(1); j++)
-            {
-                tempStr += m[i, j] + " ";
-            }
-
-            tempStr += " \n ";
-        }
-
-        Debug.Log(tempStr);
     }
 
     //Algorithmicaly generating a sudoku matrix

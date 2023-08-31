@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -8,22 +9,27 @@ namespace TicTacToeWithAI.Board
 
     public class GameController : MonoBehaviour
     {
-        [SerializeField] private Button newGameBtn;
-        [SerializeField] private Button exitGameBtn;
+        [SerializeField] private GameObject fimJogoObj;
+        [SerializeField] private GameObject vocePerdeuObj;
 
         public static int round;
-        public static bool win;
+        public static bool player;
 
         public static int
             moves; // the number of moves made in the game by both players in total (number of pieces on the board)
 
         public static bool gameOver;
 
+        private void Awake()
+        {
+            NewGame();
+        }
+
         public void NewGame()
         {
             gameOver = false;
-            var scene = SceneManager.LoadSceneAsync("Board");
-            scene.allowSceneActivation = true;
+            fimJogoObj.SetActive(false);
+            vocePerdeuObj.SetActive(false);
         }
 
         public void ExitGame()
@@ -31,8 +37,6 @@ namespace TicTacToeWithAI.Board
             moves = 0;
             round = 0;
             gameOver = false;
-            var scene = SceneManager.LoadSceneAsync("MainMenu");
-            scene.allowSceneActivation = true;
         }
 
         private void Update()
@@ -46,7 +50,8 @@ namespace TicTacToeWithAI.Board
             gameOver = true;
             moves = 0;
             round = 0;
-            newGameBtn.transform.parent.gameObject.SetActive(true);
+            if (player) fimJogoObj.SetActive(true);
+            else vocePerdeuObj.SetActive(true);
         }
     }
 }

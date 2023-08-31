@@ -8,9 +8,9 @@ namespace TicTacToeWithAI.Board
     public class HumanPlayer : MonoBehaviour
     {
         public static int playerId = 0;
-        public static bool selfPlay;    // working when PlayerAI has playerId = -1, and PlayerHuman has playerId = 0
+        public static bool selfPlay; // working when PlayerAI has playerId = -1, and PlayerHuman has playerId = 0
 
-        public static int row;          // coordinates of the player's last move
+        public static int row; // coordinates of the player's last move
         public static int col;
 
         private bool[,] board;
@@ -38,7 +38,8 @@ namespace TicTacToeWithAI.Board
             {
                 if (hitInfo.collider.CompareTag("Tile"))
                 {
-                    col = Mathf.RoundToInt(hitInfo.point.x) + 1; // ransformation of board fields into numbering: row, column
+                    col = Mathf.RoundToInt(hitInfo.point.x) +
+                          1; // ransformation of board fields into numbering: row, column
                     row = 1 - Mathf.RoundToInt(hitInfo.point.y);
 
                     board[row, col] = true;
@@ -53,13 +54,12 @@ namespace TicTacToeWithAI.Board
 
                     SoundManager.GetSoundEffect(1, 0.5f);
 
-                    if (selfPlay)                           // only playing alone with ourself
-                        if (CheckIfOver())                  // check if AI wins
+                    if (selfPlay) // only playing alone with ourself
+                        if (CheckIfOver()) // check if AI wins
                         {
                             Debug.Log("player ganhou");
-                            Debug.Log(GameController.round);
                             GameController.gameOver = true;
-                            SoundManager.GetSoundEffect(0, 1f, 0.5f);
+                            GameController.player = selfPlay;
                         }
                 }
             }
@@ -67,7 +67,7 @@ namespace TicTacToeWithAI.Board
 
         private bool CheckIfOver()
         {
-            for (int k = 0; k < 2; k++)     // for each symbol
+            for (int k = 0; k < 2; k++) // for each symbol
             {
                 int amount3 = 0;
                 int amount4 = 0;
@@ -79,17 +79,17 @@ namespace TicTacToeWithAI.Board
 
                     for (int j = 0; j < 3; j++)
                     {
-                        if (boardTransform.GetChild(j + 3 * i).GetChild(k).gameObject.activeSelf)   // horizontally
+                        if (boardTransform.GetChild(j + 3 * i).GetChild(k).gameObject.activeSelf) // horizontally
                             amount1++;
 
-                        if (boardTransform.GetChild(i + 3 * j).GetChild(k).gameObject.activeSelf)   // vertically
+                        if (boardTransform.GetChild(i + 3 * j).GetChild(k).gameObject.activeSelf) // vertically
                             amount2++;
                     }
 
-                    if (boardTransform.GetChild(4 * i).GetChild(k).gameObject.activeSelf)           // diagonally
+                    if (boardTransform.GetChild(4 * i).GetChild(k).gameObject.activeSelf) // diagonally
                         amount3++;
 
-                    if (boardTransform.GetChild(2 * i + 2).GetChild(k).gameObject.activeSelf)       // diagonally
+                    if (boardTransform.GetChild(2 * i + 2).GetChild(k).gameObject.activeSelf) // diagonally
                         amount4++;
 
                     if (amount1 == 3 || amount2 == 3)
