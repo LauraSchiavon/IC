@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 using UnityEngine.UI;
 
 /* Used to generate a game of sudoku with custom settings. */
@@ -56,14 +57,11 @@ public class Generator : MonoBehaviour
     //Tile configuration
     public TileConfig tileConfig;
 
-    //Result configuration
-    public ResultConfig resultConfig;
-
     //Object used to display mistakes made
-    public Text mistakesObject;
+    public TMP_Text mistakesObject;
 
     //Object used to display remaining hints
-    public Text hintsObject;
+    public TMP_Text hintsObject;
 
     //Selected value, usually 1 -> 9
     private int selectedValue;
@@ -117,7 +115,6 @@ public class Generator : MonoBehaviour
         updateMistakes(0);
         gen();
         populateGrid();
-        resultConfig.resultObject.SetActive(false);
     }
 
     private void checkProgress()
@@ -136,14 +133,14 @@ public class Generator : MonoBehaviour
     private void updateMistakes(int i)
     {
         mistakes = i == 0 ? 0 : mistakes + i;
-        mistakesObject.text = "Mistakes: " + mistakes.ToString() + "/" + maxMistakes.ToString();
+        mistakesObject.text = "ERROS: " + mistakes.ToString() + "/" + maxMistakes.ToString();
     }
 
     //Updating hits
     private void updateHints(int i)
     {
         hints = i == 0 ? 0 : hints + i;
-        hintsObject.text = "Hints: " + hints.ToString() + "/" + maxHints.ToString();
+        hintsObject.text = "DICAS: " + hints.ToString() + "/" + maxHints.ToString();
     }
 
     //Displaying hint
@@ -286,7 +283,7 @@ public class Generator : MonoBehaviour
         eraseOn = !eraseOn;
 
         //Chaning text color based on erase mode status
-        buttonConfig.eraseButton.transform.GetChild(0).gameObject.GetComponent<Text>().color =
+        buttonConfig.eraseButton.transform.GetChild(0).gameObject.GetComponent<TMP_Text>().color =
             eraseOn ? buttonConfig.mainButtonsSelectedColor : buttonConfig.mainButtonsDefaultColor;
 
         //If you are using icons instead of text buttons, please enable the following line instead.
@@ -299,7 +296,7 @@ public class Generator : MonoBehaviour
         notesOn = !notesOn;
 
         //Chaning text color based on notes mode status
-        buttonConfig.notesButton.transform.GetChild(0).gameObject.GetComponent<Text>().color =
+        buttonConfig.notesButton.transform.GetChild(0).gameObject.GetComponent<TMP_Text>().color =
             notesOn ? buttonConfig.mainButtonsSelectedColor : buttonConfig.mainButtonsDefaultColor;
 
         //If you are using icons instead of text buttons, please enable the following line instead.
@@ -317,14 +314,14 @@ public class Generator : MonoBehaviour
             {
                 if (i + 1 != selectedValue)
                 {
-                    buttonConfig.numberButtons[i].transform.GetChild(0).gameObject.GetComponent<Text>().color =
+                    buttonConfig.numberButtons[i].transform.GetChild(0).gameObject.GetComponent<TMP_Text>().color =
                         buttonConfig.numberButtonsDefaultColor;
 
                     //buttonConfig.numberButtons[i].GetComponent<Image>().color = buttonConfig.numberButtonsDefaultColor;
                 }
                 else
                 {
-                    buttonConfig.numberButtons[i].transform.GetChild(0).gameObject.GetComponent<Text>().color =
+                    buttonConfig.numberButtons[i].transform.GetChild(0).gameObject.GetComponent<TMP_Text>().color =
                         buttonConfig.numberButtonsSelectedColor;
                 }
             }
@@ -685,14 +682,4 @@ public class TileConfig
     public Color wrongTileColor;
     public Color correctTileColor;
     public Color highlightTileColor;
-}
-
-[System.Serializable]
-public class ResultConfig
-{
-    public string victoryText = "Victory!";
-    public string lossText = "Game Over.";
-
-    public GameObject resultObject;
-    public Text resultTextObject;
 }

@@ -77,14 +77,14 @@ public class TrocaTela : MonoBehaviour
     public void trocarParaTemasMemAudAnimais()
     {
         var start = SceneManager.GetActiveScene();
-        var sceneLoad = SceneManager.LoadSceneAsync("MemAudAnimais");
+        var sceneLoad = SceneManager.LoadSceneAsync("Animais");
         sceneLoad.allowSceneActivation = true;
     }
 
     public void trocarParaTemasMemAudCidade()
     {
         var start = SceneManager.GetActiveScene();
-        var sceneLoad = SceneManager.LoadSceneAsync("MemAudCidade");
+        var sceneLoad = SceneManager.LoadSceneAsync("Cidade");
         sceneLoad.allowSceneActivation = true;
     }
 
