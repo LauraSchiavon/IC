@@ -50,7 +50,6 @@ namespace TicTacToeWithAI.Board
             GameController.round = selfPlay ? playerId : (++GameController.round) % 2;
             int no = selfPlay ? GameController.moves % 2 : playerId;
             tile.transform.GetChild(no).gameObject.SetActive(true);
-            tile.GetComponent<BoxCollider>().enabled = false;
             tile.GetComponent<Button>().enabled = false;
 
             SoundManager.GetSoundEffect(1, 0.5f);

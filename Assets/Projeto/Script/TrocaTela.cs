@@ -122,42 +122,37 @@ public class TrocaTela : MonoBehaviour
 
     public void trocarParaRegrasJogoDaVelha()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasJogodaVelha");
         sceneLoad.allowSceneActivation = true;
     }
 
+    //TODO arrumar
     public void trocarParaJogoJogoDaVelha()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("MainMenu");
         sceneLoad.allowSceneActivation = true;
     }
 
     public void trocarParaMenuJogoDaVelha()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("MainMenu");
         sceneLoad.allowSceneActivation = true;
     }
 
     public void trocarParaCenaCampoMinado()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaCampoMinado");
         sceneLoad.allowSceneActivation = true;
     }
 
     public void trocarParaRegrasCampoMinado()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CenaRegrasCampMin");
         sceneLoad.allowSceneActivation = true;
     }
 
     public void trocarParaJogoCampoMinado()
     {
-        var start = SceneManager.GetActiveScene();
         var sceneLoad = SceneManager.LoadSceneAsync("CampoMinadoJogo");
         sceneLoad.allowSceneActivation = true;
     }

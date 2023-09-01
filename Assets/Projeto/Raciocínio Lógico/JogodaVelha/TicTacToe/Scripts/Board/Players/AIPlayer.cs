@@ -278,7 +278,6 @@ namespace TicTacToeWithAI.Board
 
             ourBoard[r, c] = true;
             boardTransform.GetChild(3 * r + c).GetChild(playerId).gameObject.SetActive(true);
-            boardTransform.GetChild(3 * r + c).GetComponent<BoxCollider>().enabled = false;
             boardTransform.GetChild(3 * r + c).GetComponent<UnityEngine.UI.Button>().enabled = false;
             return true;
         }

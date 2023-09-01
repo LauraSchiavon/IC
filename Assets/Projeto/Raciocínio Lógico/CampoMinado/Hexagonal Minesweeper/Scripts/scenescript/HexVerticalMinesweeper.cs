@@ -15,7 +15,7 @@ public class HexVerticalMinesweeper : MonoBehaviour
     public Vector2 gridOffset; //position of the full grid
     public int numMines; //this value should not be higher than number of blank tiles
     public Sprite[] innerSprites; //reference to the sprites to be shown inside the cells. 0 is blank 7 is bomb
-    public float scaleDownValue = 1; //scale value to scale down the hexagonal tile to fit screen
+    public float scaleDownValue = .5f; //scale value to scale down the hexagonal tile to fit screen
     public float timeToRegisterHold; //time to determine if a tap is a tap+hold
 
     //internal vars
