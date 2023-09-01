@@ -1,5 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Broniek.Stuff.Sounds;
+using UnityEditor;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace TicTacToeWithAI.Board
 {
@@ -15,6 +20,8 @@ namespace TicTacToeWithAI.Board
 
         private bool[,] board;
         private Transform boardTransform;
+        private bool canClick;
+
 
         private void Start()
         {
@@ -25,44 +32,36 @@ namespace TicTacToeWithAI.Board
         private void Update()
         {
             if (!GameController.gameOver)
-                if (GameController.round == playerId)
-                    if (Input.GetMouseButtonDown(0))
-                        PlacePattern();
+            {
+                canClick = GameController.round == playerId;
+            }
         }
 
-        private void PlacePattern()
+
+        public void PlacePattern(GameObject tile)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (!canClick) return;
+            col = tile.GetComponent<JogoVelhaClicar>().col;
+            row = tile.GetComponent<JogoVelhaClicar>().row;
+            board[row, col] = true;
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
-            {
-                if (hitInfo.collider.CompareTag("Tile"))
+            GameController.moves++;
+
+            GameController.round = selfPlay ? playerId : (++GameController.round) % 2;
+            int no = selfPlay ? GameController.moves % 2 : playerId;
+            tile.transform.GetChild(no).gameObject.SetActive(true);
+            tile.GetComponent<BoxCollider>().enabled = false;
+            tile.GetComponent<Button>().enabled = false;
+
+            SoundManager.GetSoundEffect(1, 0.5f);
+
+            if (selfPlay) // only playing alone with ourself
+                if (CheckIfOver()) // check if AI wins
                 {
-                    col = Mathf.RoundToInt(hitInfo.point.x) +
-                          1; // ransformation of board fields into numbering: row, column
-                    row = 1 - Mathf.RoundToInt(hitInfo.point.y);
-
-                    board[row, col] = true;
-
-                    GameController.moves++;
-
-                    GameController.round = selfPlay ? playerId : (++GameController.round) % 2;
-                    int no = selfPlay ? GameController.moves % 2 : playerId;
-
-                    hitInfo.collider.transform.GetChild(no).gameObject.SetActive(true);
-                    hitInfo.collider.enabled = false;
-
-                    SoundManager.GetSoundEffect(1, 0.5f);
-
-                    if (selfPlay) // only playing alone with ourself
-                        if (CheckIfOver()) // check if AI wins
-                        {
-                            Debug.Log("player ganhou");
-                            GameController.gameOver = true;
-                            GameController.player = selfPlay;
-                        }
+                    Debug.Log("player ganhou");
+                    GameController.gameOver = true;
+                    GameController.player = selfPlay;
                 }
-            }
         }
 
         private bool CheckIfOver()
