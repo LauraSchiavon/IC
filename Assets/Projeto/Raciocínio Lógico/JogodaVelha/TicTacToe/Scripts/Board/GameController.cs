@@ -20,7 +20,7 @@ namespace TicTacToeWithAI.Board
 
         public static bool gameOver;
 
-        private void Awake()
+        private void Start()
         {
             NewGame();
         }
