@@ -126,7 +126,6 @@ public class TrocaTela : MonoBehaviour
         sceneLoad.allowSceneActivation = true;
     }
 
-    //TODO arrumar
     public void trocarParaJogoJogoDaVelha()
     {
         var sceneLoad = SceneManager.LoadSceneAsync("MainMenu");
@@ -154,6 +153,12 @@ public class TrocaTela : MonoBehaviour
     public void trocarParaJogoCampoMinado()
     {
         var sceneLoad = SceneManager.LoadSceneAsync("CampoMinadoJogo");
+        sceneLoad.allowSceneActivation = true;
+    }
+
+        public void trocarParaCredito()
+    {
+        var sceneLoad = SceneManager.LoadSceneAsync("Credito");
         sceneLoad.allowSceneActivation = true;
     }
 }
